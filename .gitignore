@@ -1,0 +1,9 @@
+.metals
+.DS_STORE
+.ipynb_checkpoints
+.vscode
+.env
+_*
+cache
+poetry.lock
+medium.db
