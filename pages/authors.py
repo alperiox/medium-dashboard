@@ -30,6 +30,7 @@ dash.register_page(__name__, '/')
 
 
 layout = html.Div([
+    html.H1("Authors"),
     html.Div([
         html.Div([
             dcc.Input(id='search_bar', value="", type="text", placeholder="Search author...", className='row mx-auto'),
@@ -46,11 +47,11 @@ layout = html.Div([
         ], className='row'),
     
     html.Div([], id='article-reading-time-claps'),
-    ], className='container border border-auto justify-content-around'),
+    ], className='justify-content-around'),
     
     dcc.Store("authors_signal"),
     dcc.Store("dataset_signal"),
-    ])
+    ], className='container border border-auto ')
 
 @cache.memoize()
 def dataset_global_store():

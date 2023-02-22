@@ -10,7 +10,7 @@ navbar = dbc.NavbarSimple(
         dbc.NavItem(dbc.NavLink("Authors", href="http://localhost:8050/")),
         dbc.NavItem(dbc.NavLink("Publications", href="http://localhost:8050/publications")),
     ],
-    brand="Medium",
+    brand="Medium Dashboard",
     brand_href="http://localhost:8050",
     color="primary",
     dark=True,
@@ -19,7 +19,7 @@ navbar = dbc.NavbarSimple(
 app.layout = html.Div([
     navbar,
     dash.page_container,
-], className="container")
+], className="content")
 
 if __name__=="__main__":
     app.run(debug=True)
