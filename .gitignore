@@ -7,3 +7,6 @@ _*
 cache
 poetry.lock
 medium.db
+.gitignore
+test.html
+debug
