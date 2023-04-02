@@ -38,7 +38,7 @@ exclude = '''
 
 [tool.poe.tasks]
 test = "pytest -v -s --cov=app --cov-report=html"
-black = "black ."
+black = "black . --skip-string-normalization"
 flake8 = "flake8 ."
 isort = "isort ."
 check = ["black", "flake8", "isort"]
