@@ -10,3 +10,6 @@ medium.db
 .gitignore
 test.html
 debug
+dev.ipynb
+eda.ipynb
+exploratory_analysis.ipynb
