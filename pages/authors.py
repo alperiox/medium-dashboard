@@ -1,9 +1,6 @@
-# environment variables
 import os
 
 import dash
-
-# dash templates
 import dash_bootstrap_components as dbc
 import dotenv
 import pandas as pd
@@ -15,7 +12,6 @@ from plotly.subplots import make_subplots
 
 dotenv.load_dotenv("../.env")
 DATASET_DIR = os.getenv("DATASET_PATH")
-# flask cache
 
 CACHE_CONFIG = {"CACHE_TYPE": "FileSystemCache", "CACHE_DIR": "cache"}
 app = dash.get_app()

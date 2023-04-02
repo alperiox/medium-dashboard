@@ -1,20 +1,12 @@
-# dash and layout components
-# environment variables
 import os
 
 import dash
 import dotenv
 import numpy as np
-
-# dataset processing
 import pandas as pd
-
-# visualization libraries
 import plotly.express as px
 import plotly.graph_objects as go
 from dash import Input, Output, dcc, html
-
-# to cache the dataset
 from flask_caching import Cache
 from plotly.subplots import make_subplots
 

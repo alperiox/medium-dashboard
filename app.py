@@ -1,6 +1,4 @@
 import dash
-
-# dash templates
 import dash_bootstrap_components as dbc
 from dash import Dash, Input, Output, ctx, dcc, html
 

@@ -6,8 +6,7 @@ from datetime import timedelta
 import requests
 from bs4 import BeautifulSoup
 
-# set the logging level
-# logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.DEBUG)
 
 
 class PublicationScraper:
