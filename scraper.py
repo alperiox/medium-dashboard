@@ -150,7 +150,3 @@ class MediumScraper:
                 self.data[pub].append(data)
             else:
                 self.data[pub] = []
-
-
-scraper = PublicationScraper("https://towardsdatascience.com/", rollback=1)
-data = scraper.scrape()

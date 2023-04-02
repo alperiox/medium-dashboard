@@ -3,7 +3,6 @@ import os
 from dotenv import load_dotenv
 
 # data processing
-# Data Analysis
 import pandas as pd
 
 from medium_scraper import ProfileScraper
