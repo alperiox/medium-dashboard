@@ -1,9 +1,47 @@
 [tool.poetry]
 name = "medium-scraper"
 version = "0.1.0"
-description = ""
+description = "A simple medium scraper using requests, playwright and beautifulsoup4 with a plotly dash frontend."
 authors = ["Alper Balbay <itsc0508@gmail.com>"]
 readme = "README.md"
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+line_length = 120
+split_on_trailing_comma = true
+
+[tool.black]
+line-length = 120
+target-version = ['py311']
+exclude = '''
+(
+  /(
+      \.eggs
+    | \.git
+    | \.hg
+    | \.mypy_cache
+    | \.nox
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+)
+'''
+
+[tool.poe.tasks]
+test = "pytest -v -s --cov=app --cov-report=html"
+black = "black ."
+flake8 = "flake8 ."
+isort = "isort ."
+check = ["black", "flake8", "isort"]
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -15,6 +53,12 @@ flask-caching = "^2.0.2"
 
 
 [tool.poetry.group.dev.dependencies]
-black = "^22.12.0"
-pytest = "^7.2.1"
+ipykernel = "^6.16.2"
+isort = "^5.11.5"
+black = {extras = ["jupyter"], version = "^23.3.0"}
+flake8 = "5.0.4"
+pre-commit = "^3.2.0"
+poethepoet = "^0.19.0"
 
+[tool.poetry.group.test.dependencies]
+pytest = "^7.2.1"
