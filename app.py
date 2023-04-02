@@ -1,7 +1,8 @@
-from dash import Dash, html, dcc, Input, Output, ctx
 import dash
+
 # dash templates
 import dash_bootstrap_components as dbc
+from dash import Dash, Input, Output, ctx, dcc, html
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP, dbc.themes.LUX], use_pages=True)
 
@@ -16,10 +17,13 @@ navbar = dbc.NavbarSimple(
     dark=True,
 )
 
-app.layout = html.Div([
-    navbar,
-    dash.page_container,
-], className="content")
+app.layout = html.Div(
+    [
+        navbar,
+        dash.page_container,
+    ],
+    className="content",
+)
 
-if __name__=="__main__":
+if __name__ == "__main__":
     app.run(debug=True)

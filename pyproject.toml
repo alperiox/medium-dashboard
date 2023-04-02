@@ -57,7 +57,7 @@ ipykernel = "^6.16.2"
 isort = "^5.11.5"
 black = {extras = ["jupyter"], version = "^23.3.0"}
 flake8 = "5.0.4"
-pre-commit = "^3.2.0"
+pre-commit = "^3.2.1"
 poethepoet = "^0.19.0"
 
 [tool.poetry.group.test.dependencies]
