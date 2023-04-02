@@ -1,5 +1,7 @@
-import requests
 import os
+
+import requests
+
 
 def check_archive(url):
     r = requests.get(os.path.join(url, "archive"))
