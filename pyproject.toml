@@ -14,6 +14,13 @@ use_parentheses = true
 ensure_newline_before_comments = true
 line_length = 180
 split_on_trailing_comma = true
+known_plotly = "plotly"
+known_dash = ["dash", "dash_bootstrap_components", "dash_core_components", "dash_html_components", "dash_table"]
+known_pandas = ["pandas", "numpy"]
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "PLOTLY", "DASH", "PANDAS", "FIRSTPARTY", "LOCALFOLDER"]
+import_heading_plotly = "data visualization"
+import_heading_dash = "dash imports for the dashboard app"
+import_heading_pandas = "data processing"
 
 [tool.black]
 line-length = 180
@@ -41,7 +48,7 @@ test = "pytest -v -s --cov=app --cov-report=html"
 black = "black . --skip-string-normalization"
 flake8 = "flake8 ."
 isort = "isort ."
-check = ["black", "flake8", "isort"]
+fix = ["black", "flake8", "isort"]
 
 [tool.poetry.dependencies]
 python = "^3.11"
