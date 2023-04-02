@@ -1,9 +1,12 @@
-from medium_scraper import ProfileScraper, MediumScraper
-
-import pandas as pd
 import os
 
 from dotenv import load_dotenv
+
+# data processing
+# Data Analysis
+import pandas as pd
+
+from medium_scraper import ProfileScraper
 
 
 def extract(urls):
@@ -14,11 +17,10 @@ def extract(urls):
         data = scraper.extract(url)
         dataset[url] = data
 
-
     data = []
     for author_url, posts in dataset.items():
         for post in posts:
-            post['author_url'] = author_url
+            post["author_url"] = author_url
             data.append(post)
 
     dataframe = pd.DataFrame(data)
@@ -30,12 +32,9 @@ def extract(urls):
     return dataframe
 
 
-
-if __name__=="__main__":
-
+if __name__ == "__main__":
     load_dotenv()
     DATASET_PATH = os.getenv("DATASET_PATH")
-
 
     with open("authors.txt", "r") as f:
         author_urls = f.readlines()
