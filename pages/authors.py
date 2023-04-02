@@ -19,7 +19,6 @@ import dash_bootstrap_components as dbc
 from dash import Dash, Input, Output, ctx, dash_table, dcc, html
 
 # data processing
-# dataset processing
 import pandas as pd
 
 dotenv.load_dotenv("../.env")

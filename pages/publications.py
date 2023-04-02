@@ -18,7 +18,6 @@ import dash
 from dash import Input, Output, dcc, html
 
 # data processing
-# dataset processing
 import numpy as np
 import pandas as pd
 
