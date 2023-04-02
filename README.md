@@ -10,10 +10,10 @@ The data is provided by the scrapers in `scraper.py` and `medium_scraper` module
 - [ ] Styling of the pages should be improved (some components aligned in a weird way)
 ### Scraper
 - [ ] Scraper should have an individual module for itself. Then this repository should use that module
-- [ ] It does not support scraping from author's feed and page. 
+- [x] It does not support scraping from author's feed and page. 
 - [ ] Scraper's page structure support should be extended
   - [ ] Currently, it only scrape data from the publications archive. There are two different page structures for publication archive and it is not able to scrape from one of them. This support should be extended
-  - [ ] It should be able to scrape data from author's page
+  - [x] It should be able to scrape data from author's page
   
 ### DevOps
 - [ ] Dashboard can be updated weekly or daily by setting up a simple cronjob-based workflow
