@@ -6,7 +6,8 @@ from datetime import timedelta
 import requests
 from bs4 import BeautifulSoup
 
-logging.basicConfig(level=logging.DEBUG)
+# set the logging level
+# logging.basicConfig(level=logging.DEBUG)
 
 
 class PublicationScraper:
@@ -49,9 +50,7 @@ class PublicationScraper:
             print("os.path.join(self.archive_url, str(date.year))", os.path.join(self.archive_url, str(date.year)))
 
             if req.url == os.path.join(self.archive_url, str(date.year)):
-                raise NotImplementedError(
-                    "Scraping just from the year is not implemented yet. (URL: %s)" % (self.publication_url)
-                )
+                raise NotImplementedError("Scraping just from the year is not implemented yet. (URL: %s)" % (self.publication_url))
 
             page = BeautifulSoup(req.content, "html.parser")
             logging.info("Initialized the beautifulsoup")
@@ -99,15 +98,7 @@ class PublicationScraper:
             preview_image_url = article_content.find("figure").find("img")["src"]
             claps = post.find("div", {"class": "multirecommend"}).find_all("span")[-1].text
 
-            sample = {
-                "author": author,
-                "date": date,
-                "reading_time": reading_time,
-                "post_url": post_url,
-                "title": title,
-                "preview_image_url": preview_image_url,
-                "claps": claps,
-            }
+            sample = {"author": author, "date": date, "reading_time": reading_time, "post_url": post_url, "title": title, "preview_image_url": preview_image_url, "claps": claps}
 
             sample = self.post_process(sample)
 

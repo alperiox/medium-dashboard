@@ -1,14 +1,26 @@
+# environment variables
 import os
 
-import dash
-import dash_bootstrap_components as dbc
 import dotenv
-import pandas as pd
+
+# flask cache
+from flask_caching import Cache
+
+# data visualization
 import plotly.express as px
 import plotly.graph_objects as go
-from dash import Dash, Input, Output, ctx, dash_table, dcc, html
-from flask_caching import Cache
 from plotly.subplots import make_subplots
+
+# dash imports for the dashboard app
+import dash
+
+# dash templates
+import dash_bootstrap_components as dbc
+from dash import Dash, Input, Output, ctx, dash_table, dcc, html
+
+# data processing
+# dataset processing
+import pandas as pd
 
 dotenv.load_dotenv("../.env")
 DATASET_DIR = os.getenv("DATASET_PATH")
@@ -28,13 +40,7 @@ layout = html.Div(
             [
                 html.Div(
                     [
-                        dcc.Input(
-                            id="search_bar",
-                            value="",
-                            type="text",
-                            placeholder="Search author...",
-                            className="row mx-auto",
-                        ),
+                        dcc.Input(id="search_bar", value="", type="text", placeholder="Search author...", className="row mx-auto"),
                         html.Br(className="row"),
                         html.Div([], id="search_results"),
                     ],
@@ -48,16 +54,8 @@ layout = html.Div(
                 dcc.Dropdown([], "None", id="author-dropdown", className="row"),
                 html.Div(
                     [
-                        html.P(
-                            "",
-                            className="bg-primary text-white py-4 col text-center border mx-3 w-auto my-auto mx-auto",
-                            id="most-published-pub",
-                        ),
-                        html.P(
-                            "",
-                            className="bg-primary text-white py-4 col text-center border mx-3 w-auto my-auto mx-auto",
-                            id="most-published-pub-counts",
-                        ),
+                        html.P("", className="bg-primary text-white py-4 col text-center border mx-3 w-auto my-auto mx-auto", id="most-published-pub"),
+                        html.P("", className="bg-primary text-white py-4 col text-center border mx-3 w-auto my-auto mx-auto", id="most-published-pub-counts"),
                     ],
                     className="row",
                 ),
@@ -111,9 +109,7 @@ def author_dropdown(author_df):
     return author_df.Author.to_list()
 
 
-@dash.callback(
-    Output("article-reading-time-claps", "children"), Input("author-dropdown", "value"), Input("dataset_signal", "data")
-)
+@dash.callback(Output("article-reading-time-claps", "children"), Input("author-dropdown", "value"), Input("dataset_signal", "data"))
 def author_readingtime_claps_subplots(author, dataset):
     dataset = dataset_global_store()
     dataset = pd.read_json(dataset, orient="split")
@@ -156,9 +152,7 @@ def author_readingtime_claps_subplots(author, dataset):
         return dcc.Graph("article-readingtime-claps-plot", figure=fig)
 
 
-@dash.callback(
-    Output("most-published-pub", "children"), Input("author-dropdown", "value"), Input("authors_signal", "data")
-)
+@dash.callback(Output("most-published-pub", "children"), Input("author-dropdown", "value"), Input("authors_signal", "data"))
 def most_published_pub(author, author_df):
     author_df = authors_global_store()
     author_df = pd.read_json(author_df, orient="split")
@@ -169,9 +163,7 @@ def most_published_pub(author, author_df):
         return ""
 
 
-@dash.callback(
-    Output("most-published-pub-counts", "children"), Input("author-dropdown", "value"), Input("authors_signal", "data")
-)
+@dash.callback(Output("most-published-pub-counts", "children"), Input("author-dropdown", "value"), Input("authors_signal", "data"))
 def most_published_pub_count(author, author_df):
     author_df = authors_global_store()
     author_df = pd.read_json(author_df, orient="split")
@@ -182,20 +174,12 @@ def most_published_pub_count(author, author_df):
         return ""
 
 
-@dash.callback(
-    Output(component_id="search_results", component_property="children"),
-    Input(component_id="search_bar", component_property="value"),
-    Input("authors_signal", "data"),
-)
+@dash.callback(Output(component_id="search_results", component_property="children"), Input(component_id="search_bar", component_property="value"), Input("authors_signal", "data"))
 def search_bar(query, author_df):
     author_df = authors_global_store()
     author_df = pd.read_json(author_df, orient="split")
     if not query:
-        return dash_table.DataTable(
-            author_df.to_dict("records"),
-            [{"name": i, "id": i} for i in author_df.columns],
-            style_table={"overflowX": "auto"},
-        )
+        return dash_table.DataTable(author_df.to_dict("records"), [{"name": i, "id": i} for i in author_df.columns], style_table={"overflowX": "auto"})
     else:
         query = " ".join(q.capitalize() for q in query.split())
         query = query.strip()
@@ -204,6 +188,4 @@ def search_bar(query, author_df):
 
         result = author_df[mask]
 
-        return dash_table.DataTable(
-            result.to_dict("records"), [{"name": i, "id": i} for i in result.columns], style_table={"overflowX": "auto"}
-        )
+        return dash_table.DataTable(result.to_dict("records"), [{"name": i, "id": i} for i in result.columns], style_table={"overflowX": "auto"})
